@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Récolement+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+    <h2>Récolement+</h2>
+
+    <div class="toolbar">
+        <button id="saveBtnTop" class="icon-btn" data-tooltip="Exporter l’onglet actuel">📤</button>
+        <button id="saveAllBtnTop" class="icon-btn" data-tooltip="Exporter tous les onglets">📦</button>
+        <button id="replaceTabsBtn" class="icon-btn" data-tooltip="Remplacer tous les onglets">🔄</button>
+        <button id="resetBtnTop" class="icon-btn" data-tooltip="Réinitialiser tous les onglets">🗑️</button>
+        <button id="statsBtn" class="icon-btn" data-tooltip="Statistiques">📊</button>
+        <button id="themeBtnTop" class="icon-btn" data-tooltip="Mode nuit">🌙</button>
+    </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<textarea id="note" placeholder="─── Scannez vos documents ici ───
+L’application enregistre automatiquement.
+
+Vous pouvez :
+– créer, renommer/supprimer (clique droit) ou déplacer les onglets
+– voir les onglets remplis (point vert)
+– exporter vos données
+– afficher les statistiques du récolement
+– changer le thème clair/sombre
+– scanner normalement : la touche Tab est automatiquement convertie en retour à la ligne (aucune configuration de la douchette nécessaire).
+"></textarea>
+
+<div id="lineCount">0 ligne</div>
+<div id="saveFeedback">💾 Sauvegardé</div>
+
+<select id="fontSizeSelect">
+    <option value="16">16 px</option>
+    <option value="24">24 px</option>
+    <option value="32">32 px</option>
+    <option value="48">48 px</option>
+    <option value="64">64 px</option>
+</select>
+
+<div id="contextMenu">
+    <div id="renameOption">✏️ Renommer</div>
+    <div id="deleteOption">🗑️ Supprimer</div>
+</div>
+
+<!-- Remplacer les onglets -->
+<div id="replaceModal" class="modal">
+    <div class="modal-content">
+        <h3>Remplacer tous les onglets</h3>
+        <p>Entrez un nom d’onglet par ligne :</p>
+        <textarea id="replaceInput"></textarea>
+
+        <div class="modal-buttons">
+            <button id="replaceCancel">Annuler</button>
+            <button id="replaceConfirm">Valider</button>
+        </div>
+    </div>
+</div>
+
+<!-- Statistiques -->
+<div id="statsModal" class="modal">
+    <div class="modal-content">
+        <h3>Statistiques</h3>
+        <pre id="statsOutput"></pre>
+
+        <div class="modal-buttons">
+            <button id="statsSave">Enregistrer</button>
+            <button id="statsClose">Fermer</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

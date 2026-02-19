@@ -1,0 +1,304 @@
+/* --------------------------------------------------
+   BASE
+-------------------------------------------------- */
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    position: relative;
+    transition: background 0.3s, color 0.3s;
+}
+
+textarea {
+    width: 100%;
+    height: 70vh;
+    font-size: 1.2rem;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* --------------------------------------------------
+   MODE SOMBRE
+-------------------------------------------------- */
+body.dark {
+    background: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark textarea {
+    background: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+body.dark .tab,
+body.dark #addTabBtn {
+    background: #444;
+    border-color: #777;
+}
+
+body.dark .tab.active {
+    background: #888;
+    color: black;
+}
+
+body.dark #contextMenu,
+body.dark .modal-content {
+    background: #333;
+    color: #eee;
+    border-color: #666;
+}
+
+body.dark .icon-btn:hover::after {
+    background: #222;
+}
+
+body.dark #statsOutput {
+    background: #333;
+}
+
+/* --------------------------------------------------
+   ONGLET + INDICATEUR
+-------------------------------------------------- */
+.tab {
+    padding: 5px 12px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    cursor: grab;
+    background: #eee;
+    user-select: none;
+}
+
+.tab.active {
+    background: #4285f4;
+    color: white;
+    font-weight: bold;
+}
+
+.tab.hasContent::before {
+    content: "●";
+    color: #2ecc71;
+    font-size: 1rem;
+    margin-right: 6px;
+}
+
+#addTabBtn {
+    padding: 5px 12px;
+    border: 1px dashed #888;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #fafafa;
+    font-weight: bold;
+}
+
+/* --------------------------------------------------
+   LAYOUT
+-------------------------------------------------- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.tabs {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+#lineCount {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    opacity: 0.7;
+}
+
+#saveFeedback {
+    position: fixed;
+    bottom: 10px;
+    right: 120px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    font-size: 0.9rem;
+    color: #4CAF50;
+}
+
+#fontSizeSelect {
+    position: fixed;
+    bottom: 10px;
+    left: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    padding: 3px 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* --------------------------------------------------
+   ICON BUTTONS + TOOLTIP
+-------------------------------------------------- */
+.icon-btn {
+    position: relative;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 3px 6px;
+}
+
+.icon-btn:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -42px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    opacity: 0.95;
+    max-width: 220px;
+    white-space: normal;
+    text-align: center;
+}
+
+.icon-btn:hover::before {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+    opacity: 0.95;
+}
+
+/* --------------------------------------------------
+   CONTEXT MENU
+-------------------------------------------------- */
+#contextMenu {
+    position: absolute;
+    background: white;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 1000;
+}
+
+#contextMenu div {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+#contextMenu div:hover {
+    background: #eee;
+}
+
+/* --------------------------------------------------
+   MODALES
+-------------------------------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+    max-width: 90%;
+}
+
+.modal-content textarea {
+    width: 100%;
+    height: 150px;
+    margin-top: 10px;
+}
+
+/* --------------------------------------------------
+   BOUTONS MODALES (génériques)
+-------------------------------------------------- */
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.modal-buttons button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Bouton Annuler */
+#replaceCancel {
+    background: #ccc;
+    color: #333;
+}
+#replaceCancel:hover {
+    background: #b5b5b5;
+}
+
+/* Bouton Valider */
+#replaceConfirm {
+    background: #4285f4;
+    color: white;
+    font-weight: bold;
+}
+#replaceConfirm:hover {
+    background: #2f6fe0;
+}
+
+/* Bouton Enregistrer Stats */
+#statsSave {
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+#statsSave:hover {
+    background: #3e8e41;
+}
+
+/* Mode sombre pour les boutons */
+body.dark #replaceCancel { background: #555; color: #eee; }
+body.dark #replaceCancel:hover { background: #666; }
+
+body.dark #replaceConfirm { background: #1e5ad7; }
+body.dark #replaceConfirm:hover { background: #174bb5; }
+
+body.dark #statsSave { background: #2e7d32; }
+body.dark #statsSave:hover { background: #256628; }
+
+/* --------------------------------------------------
+   STATISTIQUES
+-------------------------------------------------- */
+#statsOutput {
+    white-space: pre-wrap;
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+}
